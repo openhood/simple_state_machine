@@ -1,0 +1,18 @@
+= State Machine
+
+Allow an Active Record model to act as a finite state machine just as the popular plugin acts_as_state_machine but with a few enhancements such as the possibility to have multiple states per object.
+
+== Example
+
+class Post < ActiveRecord::Base
+  state_machine :user_state, [:pending, :active, :removed, :on_hold]
+  state_machine :validation_state, [:pending, :reviewed, :validated]
+  def user_activate!
+    guard = self.user_state==:pending
+    self.user_state = :active and save! if guard
+    guard
+  end
+end
+
+p = Post.create # p.user_state = :pending
+o.user_activate! # p.user_state = :active
