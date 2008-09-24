@@ -1,0 +1,19 @@
+# Logfile created on Wed Sep 24 22:49:58 +0200 2008 by /
+  [4;36;1mSQL (0.000333)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.000281)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.003028)[0m   [0;1mCREATE TABLE "chickens" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) DEFAULT NULL NULL, "age" integer DEFAULT NULL NULL, "user_state" varchar(255) DEFAULT NULL NULL, "validation_state" varchar(255) DEFAULT NULL NULL) [0m
+  [4;35;1mSQL (0.000531)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.002747)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.003181)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.000635)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.000183)[0m   [0mSELECT version FROM "schema_migrations"[0m
+  [4;36;1mSQL (0.002271)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('0')[0m
