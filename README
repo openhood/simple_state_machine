@@ -2,6 +2,8 @@
 
 Allow an Active Record model to act as a finite state machine just as the popular plugin acts_as_state_machine but with a few enhancements such as the possibility to have multiple states per object.
 
+The simple_state_machine can work together with the classic act_as_state_machine on the same project but cannot be used at the same time for one given Active Record model. Moreover, simple_state_machine work standalone without acts_as_state_machine.
+
 == Example
 
 class Post < ActiveRecord::Base
