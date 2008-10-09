@@ -11,11 +11,17 @@ module SimpleStateMachine
       validates_format_of column, :with => Regexp.new('\A' + states.join('|') + '\Z')
       # should also override getter/setter to convert to strings
       self.class_eval <<-eos
+        private :previous_state
+        private :previous_state=
         def #{column.to_s}=(value)
+          previous_state[:#{column.to_s}] = self[:#{column.to_s}]
           self[:#{column.to_s}] = value.to_s
         end
         def #{column.to_s}
           self[:#{column.to_s}].to_sym
+        end
+        def #{column.to_s}_revert
+          self[:#{column.to_s}] = previous_state[:#{column.to_s}]
         end
       eos
     end
@@ -25,6 +31,8 @@ module SimpleStateMachine
     def create_empty_state_machine
       write_inheritable_attribute :states, {} # add a class variable
       class_inheritable_reader    :states     # make it read-only
+      write_inheritable_attribute :previous_state, {}
+      class_inheritable_accessor  :previous_state
       
       # set initial states on new objects
       if(!instance_methods.include? 'after_initialize')

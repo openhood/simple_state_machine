@@ -47,6 +47,15 @@ describe Chicken do
     }
   end
 
+  it "should return be able to return to previous state" do
+    c = Chicken.new
+    c.user_state.should === :pending
+    c.user_state = 'active'
+    c.user_state.should === :active
+    c.user_state_revert
+    c.user_state.should === :pending
+  end
+
   describe "custom event user_activate!" do
 
     it "should return true if on pending state" do
