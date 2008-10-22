@@ -4,10 +4,10 @@ class Chicken < ActiveRecord::Base
   state_machine :user_state, [:pending, :active, :removed, :on_hold]
   state_machine :validation_state, [:waiting, :reviewed, :validated, :invalid]
   def user_activate!
-    return false if self.user_state!=:pending
+    return false if !user_state_pending?
     self.user_state = :active
-    save! rescue self.user_state_revert
-    self.user_state_active?
+    save! rescue user_state_revert
+    user_state_active?
   end       
 end
 
