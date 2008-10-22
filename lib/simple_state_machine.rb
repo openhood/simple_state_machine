@@ -25,6 +25,15 @@ module SimpleStateMachine
         end
       eos
 
+      # define a method {state_column}_{state}? for each state
+      states.each do |state|
+        self.class_eval <<-eos
+          def #{column.to_s}_#{state.to_s}?
+            self[:#{column.to_s}] === '#{state.to_s}'
+          end
+        eos
+      end
+
     end
 
   private
@@ -49,16 +58,6 @@ module SimpleStateMachine
             self[column] = states.first.to_s
           } if(@new_record)
         end
-        
-        # define a method {state_column}_{state}? for each state
-        def method_missing_with_state_checking(sym, *args, &block)
-          if match = Regexp.new('\\A(' + self.states.keys.join('|') + ')_(.+)\\?\\Z').match(sym.to_s)
-            column, value = match.captures
-            return self[column.to_sym] === value.to_s if self.states[column.to_sym].include?(value.to_sym)
-          end
-          self.method_missing_without_state_checking(sym, *args, &block)
-        end
-        alias_method_chain :method_missing, :state_checking # allow overloading method_missing further
       end
     end
   end
