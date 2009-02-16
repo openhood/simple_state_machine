@@ -88,7 +88,7 @@ describe Chicken do
 
     it "should handle the user_state_pending? method" do
       c = Chicken.new
-      lambda {c.user_state_pending?}.should_not raise_error NoMethodError
+      lambda {c.user_state_pending?}.should_not raise_error(NoMethodError)
     end
 
     it "should evaluate user_state_pending? to true initially" do
@@ -115,12 +115,12 @@ describe Chicken do
 
     it "should not catch user_state_invalid?" do
       c = Chicken.new
-      lambda {c.user_state_invalid?}.should raise_error NoMethodError
+      lambda {c.user_state_invalid?}.should raise_error(NoMethodError)
     end
 
     it "should handle validation_state_waiting?" do
       c = Chicken.new
-      lambda {c.validation_state_waiting?}.should_not raise_error NoMethodError
+      lambda {c.validation_state_waiting?}.should_not raise_error(NoMethodError)
     end
 
     it "should evaluate validation_state_waiting? to true initially" do
