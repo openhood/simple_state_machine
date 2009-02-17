@@ -4,3 +4,4 @@
 Thumbs.db
 *.sqlite3.db
 *.log
+coverage/*
