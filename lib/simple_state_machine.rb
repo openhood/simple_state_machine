@@ -8,7 +8,7 @@ module SimpleStateMachine
     def state_machine(column, states)
       create_empty_state_machine unless inheritable_attributes.key? :states
       inheritable_attributes[:states][column.to_sym] = states
-      validates_format_of column, :with => Regexp.new('\A' + states.join("|") + '\Z')
+      validates_inclusion_of column, :in => states
       # should also override getter/setter to convert to strings
       self.class_eval <<-eos
         def #{column.to_s}=(value)
