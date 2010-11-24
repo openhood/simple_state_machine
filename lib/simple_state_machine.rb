@@ -40,7 +40,7 @@ module SimpleStateMachine
       class_inheritable_reader    :states     # make it read-only
       
       # set initial states on new objects
-      if(!instance_methods.include? "after_initialize")
+      if(!instance_methods.include?("after_initialize") && ActiveRecord::VERSION::MAJOR < 3)
         self.class_eval do
           def after_initialize # ActiveRecord::Base requires explicit definition of this function to use the callback
           end
@@ -56,4 +56,8 @@ module SimpleStateMachine
       end
     end
   end
+end
+
+ActiveRecord::Base.class_eval do
+  include SimpleStateMachine
 end
