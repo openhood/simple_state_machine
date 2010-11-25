@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name     = 'openhood-simple_state_machine'
-  s.version  = '1.0.0'
+  s.version  = '1.0.1'
   s.date     = '2010-11-24'
   s.summary  = 'Same as acts_as_state_machine but on multiple columns and with more strict validation, allow creation of complex events with parameters, used successfully on critical financial applications for quite a long time'
   s.description = s.summary
