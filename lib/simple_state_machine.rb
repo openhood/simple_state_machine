@@ -51,7 +51,7 @@ module SimpleStateMachine
         def set_initial_states
           states.each {|column, states|
             self[column] = states.first.to_s
-          } if(@new_record)
+          } if new_record?
         end
       end
     end
