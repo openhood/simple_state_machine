@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/spec_helper'
+require "spec_helper"
 
 class Chicken < ActiveRecord::Base
   state_machine :user_state, [:pending, :active, :removed, :on_hold]

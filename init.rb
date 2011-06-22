@@ -1,1 +1,1 @@
-require "simple_state_machine"
+require "simple_state_machine/active_record"
