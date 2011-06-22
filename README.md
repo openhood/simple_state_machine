@@ -64,3 +64,8 @@ Usage
 
           c = Chicken.create # c.user_state = :pending
           c.user_activate! # c.user_state = :active
+          
+License
+-------
+
+SimpleStateMachine is Copyright © 2010-2011 Openhood.com It is free software, and may be redistributed under the terms specified in the MIT-LICENSE file.
