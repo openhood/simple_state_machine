@@ -6,3 +6,4 @@ Thumbs.db
 *.log
 coverage/*
 log/*
+*.gem
