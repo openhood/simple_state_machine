@@ -4,14 +4,14 @@ module SimpleStateMachine
 
     included do
       class_eval do
-        write_inheritable_attribute :states, {}
-        class_inheritable_reader :states
+        class_attribute :states
+        self.states = {}
       end
     end
 
     module ClassMethods
       def state_machine(column, column_states)
-        inheritable_attributes[:states][column.to_sym] = column_states
+        states[column.to_sym] = column_states
 
         key column, String
         validates_inclusion_of column, :in => column_states

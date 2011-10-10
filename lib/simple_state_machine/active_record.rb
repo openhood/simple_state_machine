@@ -10,8 +10,8 @@ module SimpleStateMachine
 
     module ClassMethods
       def state_machine(column, states)
-        create_empty_state_machine unless inheritable_attributes.key? :states
-        inheritable_attributes[:states][column.to_sym] = states
+        create_empty_state_machine unless respond_to? :states
+        self.states[column.to_sym] = states
         validates_inclusion_of column, :in => states
         # should also override getter/setter to convert to strings
         self.class_eval <<-eos
@@ -40,9 +40,9 @@ module SimpleStateMachine
     private
 
       def create_empty_state_machine
-        write_inheritable_attribute :states, {} # add a class variable
-        class_inheritable_reader    :states     # make it read-only
-    
+        class_attribute :states
+        self.states = {}
+
         after_initialize :set_initial_states
         self.class_eval do
           def set_initial_states
